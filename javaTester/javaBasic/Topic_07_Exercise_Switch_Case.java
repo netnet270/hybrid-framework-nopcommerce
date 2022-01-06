@@ -108,6 +108,7 @@ public class Topic_07_Exercise_Switch_Case {
 		}
 		case 2: {
 			System.out.println("Thang co 28 hoac 29 ngay");
+			
 			break;
 		}
 		case 4:
