@@ -19,7 +19,6 @@ public class Topic_11_Exercise_Object {
 		System.out.println("Score: " + score);
 	}
 
-
 	public static void main(String[] args) {
 		Topic_11_Exercise_Object topic = new Topic_11_Exercise_Object("B121787", "Nguyen Van A", 25, 8.5f);
 		topic.displayed();
