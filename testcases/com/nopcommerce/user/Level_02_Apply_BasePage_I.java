@@ -33,86 +33,86 @@ public class Level_02_Apply_BasePage_I {
 
 	@Test
 	public void TC_01_Empty_Data() {
-		basePage.clickToElement(driver, "//a[@class='ico-register']");
-		basePage.clickToElement(driver, "//button[@id='register-button']");
-
-		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='FirstName-error']"),
-				"First name is required.");
-		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='LastName-error']"), "Last name is required.");
-		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='Email-error']"), "Email is required.");
-		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='Password-error']"), "Password is required.");
-		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='ConfirmPassword-error']"),
-				"Password is required.");
+//		basePage.clickToElement(driver, "//a[@class='ico-register']");
+//		basePage.clickToElement(driver, "//button[@id='register-button']");
+//
+//		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='FirstName-error']"),
+//				"First name is required.");
+//		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='LastName-error']"), "Last name is required.");
+//		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='Email-error']"), "Email is required.");
+//		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='Password-error']"), "Password is required.");
+//		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='ConfirmPassword-error']"),
+//				"Password is required.");
 	}
 
 	@Test
 	public void TC_02_Invalid_Email() {
-		basePage.refreshToPage(driver);
-		basePage.senkeyToElement(driver, "//input[@id='FirstName']", "Autoation");
-		basePage.senkeyToElement(driver, "//input[@id='LastName']", "FC");
-		basePage.senkeyToElement(driver, "//input[@id='Email']", "123@123%^3132");
-		basePage.senkeyToElement(driver, "//input[@id='Password']", "123456");
-		basePage.senkeyToElement(driver, "//input[@id='ConfirmPassword']", "123456");
-		basePage.clickToElement(driver, "//button[@id='register-button']");
+//		basePage.refreshToPage(driver);
+//		basePage.senkeyToElement(driver, "//input[@id='FirstName']", "Autoation");
+//		basePage.senkeyToElement(driver, "//input[@id='LastName']", "FC");
+//		basePage.senkeyToElement(driver, "//input[@id='Email']", "123@123%^3132");
+//		basePage.senkeyToElement(driver, "//input[@id='Password']", "123456");
+//		basePage.senkeyToElement(driver, "//input[@id='ConfirmPassword']", "123456");
+//		basePage.clickToElement(driver, "//button[@id='register-button']");
 	}
 
 	@Test
 	public void TC_03_Register_Success() {
-		basePage.refreshToPage(driver);
-		
-		basePage.senkeyToElement(driver, "//input[@id='FirstName']", "Autoation");
-		basePage.senkeyToElement(driver, "//input[@id='LastName']", "FC");
-		basePage.senkeyToElement(driver, "//input[@id='Email']", emailAddress);
-		basePage.senkeyToElement(driver, "//input[@id='Password']", "123456");
-		basePage.senkeyToElement(driver, "//input[@id='ConfirmPassword']", "123456");
-		
-		basePage.clickToElement(driver, "//button[@id='register-button']");
-		Assert.assertEquals(basePage.getTextElement(driver, "//div[@class='result']"), "Your registration completed");
-		basePage.clickToElement(driver, "//a[@class='ico-logout']");
+//		basePage.refreshToPage(driver);
+//		
+//		basePage.senkeyToElement(driver, "//input[@id='FirstName']", "Autoation");
+//		basePage.senkeyToElement(driver, "//input[@id='LastName']", "FC");
+//		basePage.senkeyToElement(driver, "//input[@id='Email']", emailAddress);
+//		basePage.senkeyToElement(driver, "//input[@id='Password']", "123456");
+//		basePage.senkeyToElement(driver, "//input[@id='ConfirmPassword']", "123456");
+//		
+//		basePage.clickToElement(driver, "//button[@id='register-button']");
+//		Assert.assertEquals(basePage.getTextElement(driver, "//div[@class='result']"), "Your registration completed");
+//		basePage.clickToElement(driver, "//a[@class='ico-logout']");
 	}
 
 	@Test
 	public void TC_04_Email_Exists() {
-		driver.findElement(By.cssSelector("a.ico-register")).click();
-		basePage.clickToElement(driver, "//a[@class='ico-register']");
-		
-		basePage.senkeyToElement(driver, "//input[@id='FirstName']", "Autoation");
-		basePage.senkeyToElement(driver, "//input[@id='LastName']", "FC");
-		basePage.senkeyToElement(driver, "//input[@id='Email']", emailAddress);
-		basePage.senkeyToElement(driver, "//input[@id='Password']", "123456");
-		basePage.senkeyToElement(driver, "//input[@id='ConfirmPassword']", "123456");
-
-		basePage.clickToElement(driver, "//button[@id='register-button']");
-		
-		Assert.assertEquals(basePage.getTextElement(driver, "//div[contains(@class, 'message-error')]"), "The specified email already exists");
+//		driver.findElement(By.cssSelector("a.ico-register")).click();
+//		basePage.clickToElement(driver, "//a[@class='ico-register']");
+//		
+//		basePage.senkeyToElement(driver, "//input[@id='FirstName']", "Autoation");
+//		basePage.senkeyToElement(driver, "//input[@id='LastName']", "FC");
+//		basePage.senkeyToElement(driver, "//input[@id='Email']", emailAddress);
+//		basePage.senkeyToElement(driver, "//input[@id='Password']", "123456");
+//		basePage.senkeyToElement(driver, "//input[@id='ConfirmPassword']", "123456");
+//
+//		basePage.clickToElement(driver, "//button[@id='register-button']");
+//		
+//		Assert.assertEquals(basePage.getTextElement(driver, "//div[contains(@class, 'message-error')]"), "The specified email already exists");
 	}
 
 	@Test
 	public void TC_05_Password_Than_Less_6_Character() {
-		basePage.refreshToPage(driver);
-		
-		basePage.senkeyToElement(driver, "//input[@id='FirstName']", "Autoation");
-		basePage.senkeyToElement(driver, "//input[@id='LastName']", "FC");
-		basePage.senkeyToElement(driver, "//input[@id='Email']", emailAddress);
-		basePage.senkeyToElement(driver, "//input[@id='Password']", "123");
-		basePage.senkeyToElement(driver, "//input[@id='ConfirmPassword']", "123");
-
-		basePage.clickToElement(driver, "//button[@id='register-button']");
-		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='Password-error']"), "Password must meet the following rules:\nmust have at least 6 characters");
+//		basePage.refreshToPage(driver);
+//		
+//		basePage.senkeyToElement(driver, "//input[@id='FirstName']", "Autoation");
+//		basePage.senkeyToElement(driver, "//input[@id='LastName']", "FC");
+//		basePage.senkeyToElement(driver, "//input[@id='Email']", emailAddress);
+//		basePage.senkeyToElement(driver, "//input[@id='Password']", "123");
+//		basePage.senkeyToElement(driver, "//input[@id='ConfirmPassword']", "123");
+//
+//		basePage.clickToElement(driver, "//button[@id='register-button']");
+//		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='Password-error']"), "Password must meet the following rules:\nmust have at least 6 characters");
 	}
 
 	@Test
 	public void TC_06_Invalid_Confirm_Password() {
-		basePage.refreshToPage(driver);
-		
-		basePage.senkeyToElement(driver, "//input[@id='FirstName']", "Autoation");
-		basePage.senkeyToElement(driver, "//input[@id='LastName']", "FC");
-		basePage.senkeyToElement(driver, "//input[@id='Email']", emailAddress);
-		basePage.senkeyToElement(driver, "//input[@id='Password']", "123456");
-		basePage.senkeyToElement(driver, "//input[@id='ConfirmPassword']", "654321");
-
-		basePage.clickToElement(driver, "//button[@id='register-button']");
-		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='ConfirmPassword-error']"), "The password and confirmation password do not match.");
+//		basePage.refreshToPage(driver);
+//		
+//		basePage.senkeyToElement(driver, "//input[@id='FirstName']", "Autoation");
+//		basePage.senkeyToElement(driver, "//input[@id='LastName']", "FC");
+//		basePage.senkeyToElement(driver, "//input[@id='Email']", emailAddress);
+//		basePage.senkeyToElement(driver, "//input[@id='Password']", "123456");
+//		basePage.senkeyToElement(driver, "//input[@id='ConfirmPassword']", "654321");
+//
+//		basePage.clickToElement(driver, "//button[@id='register-button']");
+//		Assert.assertEquals(basePage.getTextElement(driver, "//span[@id='ConfirmPassword-error']"), "The password and confirmation password do not match.");
 	}
 
 	@AfterClass

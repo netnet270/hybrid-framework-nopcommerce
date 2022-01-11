@@ -6,7 +6,7 @@ import common.BasePage;
 import pageUIs.LoginPageUI;
 
 public class LoginPageObject extends BasePage{
-	WebDriver driver;
+	private WebDriver driver;
 
 	public LoginPageObject(WebDriver driver) {
 		this.driver = driver;

@@ -101,7 +101,13 @@ public class Topic_06_Exercise_Condition_Statement {
 		int date;
 		
 		switch (month) {
-		case 1, 3, 5, 7, 8, 10, 12: {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12: {
 			date = 31;
 			break;
 		}
