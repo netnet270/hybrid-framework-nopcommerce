@@ -57,7 +57,7 @@ public class Level_04_Multiple_Browser extends BaseTest{
 		loginPage = new LoginPageObject(driver);
 		loginPage.clickToLoginButton();
 		
-		System.out.println("Register_01 - step 3: Verify error message displayed at email field");
+		System.out.println("Login_01 - step 3: Verify error message displayed at email field");
 		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter your email");
 	}
 
