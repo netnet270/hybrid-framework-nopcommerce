@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Nopcommerce">
+  <test name="Run on Chorme">
+  	<parameter name="browser" value="chorme"/>
+    <classes>
+      <class name="com.liveguru.user.Level_06_Page_Generator_Manager_III"/>
+    </classes>
+  </test> 
+</suite> <!-- Suite -->
