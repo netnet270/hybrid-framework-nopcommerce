@@ -1,5 +1,6 @@
 package common;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -11,9 +12,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
 	private WebDriver driver;
-	String projectPath = System.getProperty("user.dir");
 
-	public WebDriver getBrowserName(String browserName) {
+	protected WebDriver getBrowserName(String browserName) {
 		if(browserName.equals("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
@@ -30,7 +30,11 @@ public class BaseTest {
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get("https://demo.nopcommerce.com/");
-		
 		return driver;
+	}
+	
+	protected int getRandomNumber() {
+		Random random = new Random();
+		return random.nextInt(999);
 	}
 }

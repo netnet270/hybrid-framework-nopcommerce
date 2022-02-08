@@ -62,5 +62,4 @@ public class LoginPageObject extends BaseFactory{
 		waitForElementVisible(driver, unsuccessErrorMessage);
 		return getTextElement(driver, unsuccessErrorMessage);
 	}
-	
 }
