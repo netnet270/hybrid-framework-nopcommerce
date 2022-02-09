@@ -8,24 +8,24 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import common.BaseTest;
-import pageObjects.nopCommerce.AddressPageObject;
-import pageObjects.nopCommerce.CustomerInfoPageObject;
-import pageObjects.nopCommerce.HomePageObject;
-import pageObjects.nopCommerce.LoginPageObject;
-import pageObjects.nopCommerce.MyProductReviewerPageObject;
-import pageObjects.nopCommerce.PageGeneratorManager;
-import pageObjects.nopCommerce.RegisterPageObject;
-import pageObjects.nopCommerce.RewardPointPageObject;
+import common.PageGeneratorManager;
+import pageObjects.nopCommerce.user.UserAddressPageObject;
+import pageObjects.nopCommerce.user.UserCustomerInfoPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserLoginPageObject;
+import pageObjects.nopCommerce.user.UserMyProductReviewerPageObject;
+import pageObjects.nopCommerce.user.UserRegisterPageObject;
+import pageObjects.nopCommerce.user.UserRewardPointPageObject;
 
 public class Level_07_Switch_Page_UI extends BaseTest{
 	WebDriver driver;
-	HomePageObject homePage;
-	LoginPageObject loginPage;
-	RegisterPageObject registerPage;
-	CustomerInfoPageObject customerInfoPage;
-	AddressPageObject addressPage;
-	RewardPointPageObject rewardPointPage;
-	MyProductReviewerPageObject myProductReviewerPage;
+	UserHomePageObject homePage;
+	UserLoginPageObject loginPage;
+	UserRegisterPageObject registerPage;
+	UserCustomerInfoPageObject customerInfoPage;
+	UserAddressPageObject addressPage;
+	UserRewardPointPageObject rewardPointPage;
+	UserMyProductReviewerPageObject myProductReviewerPage;
 	String firstName, lastName, invalidEmail, notFoundEmail, existEmail, password;
 
 	@Parameters("browser")
@@ -33,7 +33,7 @@ public class Level_07_Switch_Page_UI extends BaseTest{
 	public void beforeClass(String browserName) {
 		driver = getBrowserName(browserName);
 		
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManager.getUserHomePageObject(driver);
 		
 		firstName = "Automation";
 		lastName = "FC";

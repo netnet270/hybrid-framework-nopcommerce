@@ -10,15 +10,15 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import common.BaseTest;
-import pageObjects.nopCommerce.HomePageObject;
-import pageObjects.nopCommerce.LoginPageObject;
-import pageObjects.nopCommerce.RegisterPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserLoginPageObject;
+import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
 public class Level_04_Multiple_Browser extends BaseTest{
 	WebDriver driver;
-	HomePageObject homePage;
-	LoginPageObject loginPage;
-	RegisterPageObject registerPage;
+	UserHomePageObject homePage;
+	UserLoginPageObject loginPage;
+	UserRegisterPageObject registerPage;
 	String firstName, lastName, invalidEmail, notFoundEmail, existEmail, password;
 
 	@Parameters("browser")
@@ -26,7 +26,7 @@ public class Level_04_Multiple_Browser extends BaseTest{
 	public void beforeClass(String browserName) {
 		driver = getBrowserName(browserName);
 
-		registerPage = new RegisterPageObject(driver);
+		registerPage = new UserRegisterPageObject(driver);
 		registerPage.clickToRegisterLink();
 
 		firstName = "Automation";
@@ -50,11 +50,11 @@ public class Level_04_Multiple_Browser extends BaseTest{
 	@Test
 	public void Login_01_Empty_Data() {
 		System.out.println("Login_01 - step 1: Click to login link");
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 		homePage.clickToLoginLink();
 
 		System.out.println("Login_01 - step 1: Click to login button");
-		loginPage = new LoginPageObject(driver);
+		loginPage = new UserLoginPageObject(driver);
 		loginPage.clickToLoginButton();
 		
 		System.out.println("Login_01 - step 3: Verify error message displayed at email field");
@@ -138,7 +138,7 @@ public class Level_04_Multiple_Browser extends BaseTest{
 		System.out.println("Login_06 - step 3: Click to login button");
 		loginPage.clickToLoginButton();
 
-		homePage = new HomePageObject(driver);
+		homePage = new UserHomePageObject(driver);
 	}
 
 	@AfterClass

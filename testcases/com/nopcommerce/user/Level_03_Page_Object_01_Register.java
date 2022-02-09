@@ -11,13 +11,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import common.BasePage;
-import pageObjects.nopCommerce.HomePageObject;
-import pageObjects.nopCommerce.RegisterPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
 public class Level_03_Page_Object_01_Register extends BasePage {
 	WebDriver driver;
-	HomePageObject homePage;
-	RegisterPageObject registerPage;
+	UserHomePageObject homePage;
+	UserRegisterPageObject registerPage;
 	String firstName, lastName, emailAddress, password;
 	String projectPath = System.getProperty("user.dir");
 
@@ -34,8 +34,8 @@ public class Level_03_Page_Object_01_Register extends BasePage {
 		password = "123456";
 		emailAddress = "afc" + getRandomNumber() + "@gmail.vn";
 		
-		homePage = new HomePageObject(driver);
-		registerPage = new RegisterPageObject(driver);
+		homePage = new UserHomePageObject(driver);
+		registerPage = new UserRegisterPageObject(driver);
 	}
 
 	@Test

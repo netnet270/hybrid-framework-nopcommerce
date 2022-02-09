@@ -3,7 +3,7 @@
   <test name="Run on Chorme">
   	<parameter name="browser" value="chorme"/>
     <classes>
-      <class name="com.nopcommerce.user.Level_07_Switch_Page_UI"/>
+      <class name="com.nopcommerce.user.Level_08_Switch_Role"/>
     </classes>
   </test> 
 </suite> <!-- Suite -->
