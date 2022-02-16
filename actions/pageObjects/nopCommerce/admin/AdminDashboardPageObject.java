@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import common.BasePage;
 import common.PageGeneratorManager;
+import pageUIs.nopCommerce.admin.AdminDashboardPageUI;
 
 public class AdminDashboardPageObject extends BasePage{
 	private WebDriver driver;

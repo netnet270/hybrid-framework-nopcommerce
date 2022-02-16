@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="jQuery">
+  <test name="Run on Chorme">
+  	<parameter name="browser" value="chorme"/>
+  	
+  	<parameter name="url" value="https://www.jqueryscript.net/demo/jQuery-Dynamic-Data-Grid-Plugin-appendGrid/"/>
+    <classes>
+      <class name="com.jquery.datatable.Level_10_DataTable_DataGrid"/>
+    </classes>
+  </test> 
+</suite>

@@ -1,4 +1,4 @@
-package pageObjects.nopCommerce.admin;
+package pageUIs.nopCommerce.admin;
 
 public class AdminLoginPageUI {
 	public static final String EMAIL_TEXTBOX = "//input[@id='Email']";
