@@ -38,7 +38,7 @@ public class Level_08_Switch_Role extends BaseTest{
 		Assert.assertTrue(userHomePage.isMyAccountLinkDisplay());
 		userHomePage.clickToLogoutLink();
 		
-		userHomePage.openPageUrl(driver, GlobalConstants.ADMIN_PAGE_URL);
+		userHomePage.openPageUrl(driver, GlobalConstants.ADMIN_NOPCOMMERCE_PAGE_URL);
 		
 		adminLoginPage = PageGeneratorManager.getAdminLoginPageObject(driver);
 		
@@ -49,7 +49,7 @@ public class Level_08_Switch_Role extends BaseTest{
 
 	@Test
 	public void User_02_Admin_To_User() {
-		adminLoginPage.openPageUrl(driver, GlobalConstants.USER_PAGE_URL);
+		adminLoginPage.openPageUrl(driver, GlobalConstants.USER_NOPCOMMERCE_PAGE_URL);
 		
 		userHomePage = PageGeneratorManager.getUserHomePageObject(driver);
 	}

@@ -29,7 +29,7 @@ public class BaseTest {
 		
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.get(GlobalConstants.USER_PAGE_URL);
+		driver.get(GlobalConstants.USER_NOPCOMMERCE_PAGE_URL);
 		return driver;
 	}
 	

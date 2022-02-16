@@ -2,8 +2,9 @@
 <suite name="Nopcommerce">
   <test name="Run on Chorme">
   	<parameter name="browser" value="chorme"/>
+  	<parameter name="url" value="http://live.techpanda.org/"/>
     <classes>
-      <class name="com.liveguru.user.Level_06_Page_Generator_Manager_III"/>
+      <class name="com.liveguru.user.Level_10_DataTable_DataGrid"/>
     </classes>
   </test> 
 </suite> <!-- Suite -->

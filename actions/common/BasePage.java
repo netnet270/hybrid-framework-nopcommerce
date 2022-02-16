@@ -134,7 +134,7 @@ public class BasePage {
 		return locatorType;
 	}
 	
-	private WebElement getWebElement(WebDriver driver, String locatorType) {
+	protected WebElement getWebElement(WebDriver driver, String locatorType) {
 		return driver.findElement(getByLocator(locatorType));
 	}
 

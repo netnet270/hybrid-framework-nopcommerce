@@ -8,25 +8,25 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import common.BaseTest;
-import pageObjects.liveGuru.HomePageObject;
-import pageObjects.liveGuru.LoginPageObject;
-import pageObjects.liveGuru.MyDashboardPageObject;
-import pageObjects.liveGuru.PageGeneratorManager;
-import pageObjects.liveGuru.RegisterPageObject;
+import pageObjects.liveGuru.user.UserHomePageObject;
+import pageObjects.liveGuru.user.UserLoginPageObject;
+import pageObjects.liveGuru.user.UserMyDashboardPageObject;
+import pageObjects.liveGuru.user.PageGeneratorManager;
+import pageObjects.liveGuru.user.UserRegisterPageObject;
 
 public class Level_06_Page_Generator_Manager_III extends BaseTest{
 	WebDriver driver;
-	HomePageObject homePage;
-	LoginPageObject loginPage;
-	RegisterPageObject registerPage;
-	MyDashboardPageObject myDashboardPage;
+	UserHomePageObject homePage;
+	UserLoginPageObject loginPage;
+	UserRegisterPageObject registerPage;
+	UserMyDashboardPageObject myDashboardPage;
 	String firstName, lastName, email, password;
 
-	@Parameters("browser")
+	@Parameters({"browser", "url"})
 	@BeforeClass
-	public void beforeClass(String browserName) {
-		driver = getBrowserName(browserName);
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+	public void beforeClass(String browserName, String url) {
+		driver = getBrowserName(browserName, url);
+		homePage = PageGeneratorManager.getUserHomePageObject(driver);
 		
 		firstName = "Automation";
 		lastName = "FC";
