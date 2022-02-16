@@ -12,27 +12,10 @@ import common.GlobalConstants;
 import common.PageGeneratorManager;
 import pageObjects.nopCommerce.admin.AdminDashboardPageObject;
 import pageObjects.nopCommerce.admin.AdminLoginPageObject;
-import pageObjects.nopCommerce.user.UserAddressPageObject;
-import pageObjects.nopCommerce.user.UserCustomerInfoPageObject;
 import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserLoginPageObject;
-import pageObjects.nopCommerce.user.UserMyProductReviewerPageObject;
-import pageObjects.nopCommerce.user.UserRegisterPageObject;
-import pageObjects.nopCommerce.user.UserRewardPointPageObject;
 
 public class Level_08_Switch_Role extends BaseTest{
-	WebDriver driver;
-	UserHomePageObject userHomePage;
-	UserLoginPageObject userLoginPage;
-	UserRegisterPageObject userRegisterPage;
-	UserCustomerInfoPageObject userCustomerInfoPage;
-	UserAddressPageObject userAddressPage;
-	UserRewardPointPageObject userRewardPointPage;
-	UserMyProductReviewerPageObject userMyProductReviewerPage;
-	AdminLoginPageObject adminLoginPage;
-	AdminDashboardPageObject adminDashboardPage;
-	String userEmail, userPassword, adminEmail, adminPassword;
-
 	@Parameters("browser")
 	@BeforeClass
 	public void beforeClass(String browserName) {
@@ -75,4 +58,11 @@ public class Level_08_Switch_Role extends BaseTest{
 	public void afterClass() {
 		driver.quit();
 	}
+	
+	WebDriver driver;
+	UserHomePageObject userHomePage;
+	UserLoginPageObject userLoginPage;
+	AdminLoginPageObject adminLoginPage;
+	AdminDashboardPageObject adminDashboardPage;
+	String userEmail, userPassword, adminEmail, adminPassword;
 }

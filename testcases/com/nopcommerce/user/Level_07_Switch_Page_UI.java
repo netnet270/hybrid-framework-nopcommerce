@@ -16,6 +16,7 @@ import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserMyProductReviewerPageObject;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
+import pageUIs.nopCommerce.user.BasePageUI;
 
 public class Level_07_Switch_Page_UI extends BaseTest{
 	WebDriver driver;
@@ -85,8 +86,8 @@ public class Level_07_Switch_Page_UI extends BaseTest{
 		Assert.assertTrue(customerInfoPage.isMyAccountPageDisplay());
 	}
 
-	@Test
-	public void User_04_Switch_Page() {
+//	@Test
+	public void User_04_Switch_Page_01() {
 //		customerInfoPage -> addressPage
 		addressPage = customerInfoPage.openAddressPage(driver);
 		
@@ -95,11 +96,24 @@ public class Level_07_Switch_Page_UI extends BaseTest{
 		
 		rewardPointPage = customerInfoPage.openRewardPointPage(driver);
 		
-		addressPage = rewardPointPage.openAddressPage(driver);
+		addressPage = rewardPointPage.openAddressPage(driver); 
 		
 		myProductReviewerPage = addressPage.openMyProductReviwerPage(driver);
 		
 		customerInfoPage = myProductReviewerPage.openCustomerInfoPage(driver);
+	}
+	
+	@Test
+	public void User_04_Switch_Page_02() {
+		customerInfoPage = (UserCustomerInfoPageObject) addressPage.openPageAtMyAccountByName(driver, BasePageUI.DYNAMIC_NAME_AT_MY_ACCOUNT, "Customer info");
+		
+		rewardPointPage = (UserRewardPointPageObject) customerInfoPage.openPageAtMyAccountByName(driver, BasePageUI.DYNAMIC_NAME_AT_MY_ACCOUNT, "Reward points");
+		
+		addressPage = (UserAddressPageObject) rewardPointPage.openPageAtMyAccountByName(driver, BasePageUI.DYNAMIC_NAME_AT_MY_ACCOUNT, "Addresses");
+		
+		myProductReviewerPage = (UserMyProductReviewerPageObject) addressPage.openPageAtMyAccountByName(driver, BasePageUI.DYNAMIC_NAME_AT_MY_ACCOUNT, "My product reviews");
+		
+		customerInfoPage = (UserCustomerInfoPageObject) myProductReviewerPage.openPageAtMyAccountByName(driver, BasePageUI.DYNAMIC_NAME_AT_MY_ACCOUNT, "Customer info");
 	}
 
 	@AfterClass
