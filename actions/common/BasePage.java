@@ -19,6 +19,7 @@ import pageObjects.nopCommerce.user.UserAddressPageObject;
 import pageObjects.nopCommerce.user.UserCustomerInfoPageObject;
 import pageObjects.nopCommerce.user.UserMyProductReviewerPageObject;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
+import pageUIs.jQuery.uploadFile.BasePageUploadFileUI;
 import pageUIs.nopCommerce.user.BasePageUI;
 
 public class BasePage {
@@ -50,7 +51,7 @@ public class BasePage {
 		driver.navigate().forward();
 	}
 
-	protected void refreshToPage(WebDriver driver) {
+	public void refreshToPage(WebDriver driver) {
 		driver.navigate().refresh();
 	}
 
@@ -352,11 +353,14 @@ public class BasePage {
 		boolean status = (boolean) ((JavascriptExecutor) driver).executeScript(
 				"return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0",
 				getWebElement(driver, locatorType));
-		if (status) {
-			return true;
-		} else {
-			return false;
-		}
+		return status;
+	}
+	
+	protected boolean isImageLoaded(WebDriver driver, String locatorType, String...dynamicValues) {
+		boolean status = (boolean) ((JavascriptExecutor) driver).executeScript(
+				"return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0",
+				getWebElement(driver, getDynamicLocatorType(locatorType, dynamicValues)));
+		return status;
 	}
 	
 	protected WebElement waitForElementVisible(WebDriver driver, String locatorType) {
@@ -407,6 +411,17 @@ public class BasePage {
 	protected WebElement waitForElementClickable(WebDriver driver, String locatorType, String...dynamicValues) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTime);
 		return explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(getDynamicLocatorType(locatorType, dynamicValues))));
+	}
+	
+	public void uploadMultipleFiles(WebDriver driver, String...fileNames) {
+		String filePath = GlobalConstants.UPLOAD_FILE_PATH;
+		
+		String fullFileName = "";
+		for (String file : fileNames) {
+			fullFileName = fullFileName + filePath + file + "\n";
+		}
+		fullFileName = fullFileName.trim();
+		senkeyToElement(driver, BasePageUploadFileUI.UPLOAD_FILE, fullFileName);
 	}
 	
 	public UserAddressPageObject openAddressPage(WebDriver driver) {

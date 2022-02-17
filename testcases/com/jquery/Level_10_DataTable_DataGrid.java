@@ -1,4 +1,4 @@
-package com.jquery.datatable;
+package com.jquery;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -8,8 +8,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import common.BaseTest;
-import pageObjects.jQuery.HomePageObject;
-import pageObjects.jQuery.PageGeneratorManager;
+import pageObjects.jQuery.dataTable.HomePageObject;
+import pageObjects.jQuery.dataTable.PageGeneratorManager;
 
 public class Level_10_DataTable_DataGrid extends BaseTest{
 	WebDriver driver;

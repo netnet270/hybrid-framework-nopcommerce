@@ -33,11 +33,11 @@ public class Level_10_DataTable_DataGrid extends BaseTest{
 		driver = getBrowserName(browserName, url);
 		userHomePage = PageGeneratorManager.getUserHomePageObject(driver);
 		
-		userFirstName = "Automation";
-		userLastName = "FC";
+		userFirstName = "John";
+		userLastName = "Smith";
 		userFullName = userFirstName + " " + userLastName;
 		userPassword = "123456";
-		userEmail = "afc" + getRandomNumber() + "@gmail.vn";
+		userEmail = "afc" + getRandomNumber() + "@gmail.com";
 		
 		adminUser = "user01";
 		adminPassword = "guru99com";

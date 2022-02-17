@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Nopcommerce">
+  <parameter name="url" value="http://live.techpanda.org/"/>
+ 	
   <test name="Run on Chorme">
   	<parameter name="browser" value="chorme"/>
-  	<parameter name="url" value="http://live.techpanda.org/"/>
     <classes>
       <class name="com.liveguru.user.Level_10_DataTable_DataGrid"/>
     </classes>
