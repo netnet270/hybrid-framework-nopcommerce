@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Nopcommerce">
+
+  <listeners>
+  	<listener class-name="common.MethodListener"/>
+  </listeners>
+  
   <test name="Run on Chorme">
   	<parameter name="browser" value="chorme"/>
     <classes>
-      <class name="com.nopcommerce.user.Level_07_Switch_Page_UI"/>
+      <class name="com.nopcommerce.user.Level_12_Assert_Verify"/>
     </classes>
   </test> 
 </suite> <!-- Suite -->
