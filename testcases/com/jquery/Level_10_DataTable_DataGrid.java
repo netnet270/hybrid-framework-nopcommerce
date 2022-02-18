@@ -26,19 +26,19 @@ public class Level_10_DataTable_DataGrid extends BaseTest{
 	public void Table_01_Paging() {
 		homePage.openPagingByPageNumber("10");
 		Assert.assertTrue(homePage.isPageNumberActived("10"));
-		sleepInSecond(2);
+		homePage.sleepInSecond(2);
 		
 		homePage.openPagingByPageNumber("8");
 		Assert.assertTrue(homePage.isPageNumberActived("8"));
-		sleepInSecond(2);
+		homePage.sleepInSecond(2);
 
 		homePage.openPagingByPageNumber("20");
 		Assert.assertTrue(homePage.isPageNumberActived("20"));
-		sleepInSecond(2);
+		homePage.sleepInSecond(2);
 
 		homePage.openPagingByPageNumber("2");
 		Assert.assertTrue(homePage.isPageNumberActived("2"));
-		sleepInSecond(2);
+		homePage.sleepInSecond(2);
 
 	}
 

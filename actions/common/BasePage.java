@@ -2,10 +2,12 @@ package common;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -14,8 +16,6 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.Reporter;
 
 import pageObjects.nopCommerce.user.UserAddressPageObject;
 import pageObjects.nopCommerce.user.UserCustomerInfoPageObject;
@@ -207,7 +207,7 @@ public class BasePage {
 		}
 	}
 
-	protected void sleepInSecond(long second) {
+	public void sleepInSecond(long second) {
 		try {
 			Thread.sleep(second * 1000);
 		} catch (InterruptedException e) {
@@ -268,13 +268,33 @@ public class BasePage {
 	}
 
 	protected boolean isElementDisplayed(WebDriver driver, String locatorType) {
-		return getWebElement(driver, locatorType).isDisplayed();
+		try {
+			return getWebElement(driver, locatorType).isDisplayed();
+		} catch (NoSuchElementException e) {
+			return false;
+		}
 	}
 	
 	protected boolean isElementDisplayed(WebDriver driver, String locatorType, String...dynamicValues) {
 		return getWebElement(driver, getDynamicLocatorType(locatorType, dynamicValues)).isDisplayed();
 	}
+	
+	protected boolean isElementUndisplayed(WebDriver driver, String locatorType) {
+		overrideImplicitlyGlobalTimeout(driver, GlobalConstants.SHORT_TIME);
+		
+		List<WebElement> elements = getListWebElement(driver, locatorType);
+		
+		overrideImplicitlyGlobalTimeout(driver, GlobalConstants.LONG_TIME);
+		
+		if(elements.size() == 0) {
+			return true;
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			return true;
+		}
 
+		return false;
+	}
+	
 	protected boolean isElementSelected(WebDriver driver, String locatorType) {
 		return getWebElement(driver, locatorType).isSelected();
 	}
@@ -415,6 +435,10 @@ public class BasePage {
 		return explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(getDynamicLocatorType(locatorType, dynamicValues))));
 	}
 	
+	public void overrideImplicitlyGlobalTimeout(WebDriver driver, long timeOut) {
+		driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
+	}
+	
 	public void uploadMultipleFiles(WebDriver driver, String...fileNames) {
 		String filePath = GlobalConstants.UPLOAD_FILE_PATH;
 		
@@ -424,50 +448,6 @@ public class BasePage {
 		}
 		fullFileName = fullFileName.trim();
 		senkeyToElement(driver, BasePageUploadFileUI.UPLOAD_FILE, fullFileName);
-	}
-
-	public boolean verifyTrue(boolean condition) {
-		boolean pass = true;
-		try {
-			Assert.assertTrue(condition);
-			System.out.println(" -------------------------- PASSED -------------------------- ");
-		} catch (Throwable e) {
-			pass = false;
-			System.out.println(" -------------------------- FAILED -------------------------- ");
-			
-			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
-			Reporter.getCurrentTestResult().setThrowable(e);
-		}
-		return pass;
-	}
-
-	public boolean verifyFalse(boolean condition) {
-		boolean pass = true;
-		try {
-			Assert.assertFalse(condition);
-			System.out.println(" -------------------------- PASSED -------------------------- ");
-		} catch (Throwable e) {
-			pass = false;
-			System.out.println(" -------------------------- FAILED -------------------------- ");
-			
-			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
-			Reporter.getCurrentTestResult().setThrowable(e);
-		}
-		return pass;
-	}
-
-	public boolean verifyEquals(Object actual, Object expected) {
-		boolean pass = true;
-		try {
-			Assert.assertEquals(actual, expected);
-			System.out.println(" -------------------------- PASSED -------------------------- ");
-		} catch (Throwable e) {
-			pass = false;
-			System.out.println(" -------------------------- FAILED -------------------------- ");
-			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
-			Reporter.getCurrentTestResult().setThrowable(e);
-		}
-		return pass;
 	}
 	
 	public UserAddressPageObject openAddressPage(WebDriver driver) {
@@ -512,5 +492,5 @@ public class BasePage {
 		}
 	}
 	
-	private int longTime = 30;
+	private long longTime = GlobalConstants.LONG_TIME;
 }
