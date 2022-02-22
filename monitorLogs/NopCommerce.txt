@@ -1,0 +1,18 @@
+[INFO ] [2022-02-22 09:18:39,269] Pre-Condition: Open browser 'chorme' and navigate to 'https://demo.nopcommerce.com/'
+[INFO ] [2022-02-22 09:18:45,832] User_01_Register - Step 1: Click to 'Register' link
+[INFO ] [2022-02-22 09:18:52,980] User_01_Register - Step 2: Enter to 'Firstname' textbox
+[INFO ] [2022-02-22 09:18:53,107] User_01_Register - Step 3: Enter to 'Lastname' textbox
+[INFO ] [2022-02-22 09:18:53,225] User_01_Register - Step 4: Enter to 'EmailAddress' textbox with value: afc173@gmail.vn
+[INFO ] [2022-02-22 09:18:53,370] User_01_Register - Step 5: Enter to 'Password' textbox with value: 123456
+[INFO ] [2022-02-22 09:18:53,496] User_01_Register - Step 6: Enter to 'Confirm Password' textbox
+[INFO ] [2022-02-22 09:18:53,623] User_01_Register - Step 7: Click to 'Register' button
+[INFO ] [2022-02-22 09:18:57,379] User_01_Register - Step 8: Verify success message is displayed
+[INFO ] [2022-02-22 09:18:57,454]  -------------------------- PASSED -------------------------- 
+[INFO ] [2022-02-22 09:18:57,455] User_01_Register - Step 9: Click to 'Logout' link
+[INFO ] [2022-02-22 09:18:59,006] User_02_Login - Step 1: Click to login link
+[INFO ] [2022-02-22 09:19:02,094] User_02_Login - Step 2: Enter to 'EmailAddress' textbox with value: afc173@gmail.vn
+[INFO ] [2022-02-22 09:19:02,265] User_02_Login - Step 3: Enter to 'Password' textbox with value: 123456
+[INFO ] [2022-02-22 09:19:02,446] User_02_Login - Step 4: Click to login button
+[INFO ] [2022-02-22 09:19:21,594] User_02_Login - Step 5: Verify 'My Account' link is displayed
+[INFO ] [2022-02-22 09:19:21,693]  -------------------------- PASSED -------------------------- 
+[INFO ] [2022-02-22 09:19:21,695] Post-Condition: Close browser

@@ -2,6 +2,8 @@ package common;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
@@ -12,7 +14,7 @@ public class MethodListener implements IInvokedMethodListener{
 
 	@Override
 	public void afterInvocation(IInvokedMethod method, ITestResult result) {
-		System.out.println("After invocation of " + method.getTestMethod().getMethodName());
+		log.info("After invocation of " + method.getTestMethod().getMethodName());
 		Reporter.setCurrentTestResult(result);
 		if (method.isTestMethod()) {
 			VerificationFailures allFailures = VerificationFailures.getFailures();
@@ -48,10 +50,9 @@ public class MethodListener implements IInvokedMethodListener{
 
 	@Override
 	public void beforeInvocation(IInvokedMethod method, ITestResult result) {
-//		log.debug("Before invocation of " + method.getTestMethod().getMethodName());
-		System.out.println("Before invocation of " + method.getTestMethod().getMethodName());
+		log.debug("Before invocation of " + method.getTestMethod().getMethodName());
 	}
 	
-//	private static final Log log = LogFactory.getLog(MethodListener.class);
+	private static final Log log = LogFactory.getLog(MethodListener.class);
 
 }

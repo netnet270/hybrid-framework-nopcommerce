@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="Nopcommerce">
+<suite name="Nopcommerce" paralllel="tests" threas-count="3">
 
   <listeners>
+  	<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+  	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  	<listener class-name="reportConfig.ExtendReportListenerV2"/>
   	<listener class-name="common.MethodListener"/>
   </listeners>
+  
+  <parameter name="url" value="https://demo.nopcommerce.com/"/>
   
   <test name="Run on Chorme">
   	<parameter name="browser" value="chorme"/>
     <classes>
-      <class name="com.nopcommerce.user.Level_12_Assert_Verify"/>
+      <class name="com.nopcommerce.user.Level_14_Log_Report"/>
     </classes>
   </test> 
+  
+<test name="Run on Firefox">
+  	<parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.nopcommerce.user.Level_14_Log_Report"/>
+    </classes>
+  </test> 
+  
+  <test name="Run on Edge">
+  	<parameter name="browser" value="edge"/>
+    <classes>
+      <class name="com.nopcommerce.user.Level_14_Log_Report"/>
+    </classes>
+  </test> 
+  
 </suite> <!-- Suite -->
