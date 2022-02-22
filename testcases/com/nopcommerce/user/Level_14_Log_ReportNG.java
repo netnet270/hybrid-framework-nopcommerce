@@ -16,7 +16,7 @@ import pageObjects.nopCommerce.user.UserMyProductReviewerPageObject;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
 
-public class Level_14_Log_Report extends BaseTest{
+public class Level_14_Log_ReportNG extends BaseTest{
 	WebDriver driver;
 	UserHomePageObject homePage;
 	UserLoginPageObject loginPage;
@@ -64,7 +64,7 @@ public class Level_14_Log_Report extends BaseTest{
 		registerPage.clickToRegisterButton();
 		
 		log.info("User_01_Register - Step 8: Verify success message is displayed");
-		verifyEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
+		verifyEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed.");
 		
 		log.info("User_01_Register - Step 9: Click to 'Logout' link");
 		homePage = registerPage.clickToLogoutLink();

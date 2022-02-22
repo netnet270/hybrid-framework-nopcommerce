@@ -11,7 +11,7 @@ public class TestNGAppender extends AppenderSkeleton {
 
 	@Override
 	protected void append(LoggingEvent event) {
-		Reporter.log(getLayout().format(event));
+		Reporter.log(getLayout().format(event) + "<br>");
 	}
 
 	@Override
@@ -31,5 +31,4 @@ public class TestNGAppender extends AppenderSkeleton {
 	public void info(String logMessage) {
 		Reporter.log(logMessage);
 	}
-
 }
