@@ -503,5 +503,20 @@ public class BasePage {
 		}
 	}
 	
+	public void enterToTextboxByID(WebDriver driver,  String textboxID, String value) {
+		waitForElementVisible(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+		senkeyToElement(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, value, textboxID);		
+	}
+
+	public void openHeaderPageByName(WebDriver driver, String headerPageName) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_HEADER_PAGE_BY_NAME, headerPageName);
+		clickToElement(driver, BasePageUI.DYNAMIC_HEADER_PAGE_BY_NAME, headerPageName);
+	}
+	
+	public void clickToButtonByText(WebDriver driver, String buttonText) {
+		waitForElementClickable(driver, BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+		clickToElement(driver, BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+	}
+	
 	private long longTime = GlobalConstants.LONG_TIME;
 }
