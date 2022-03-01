@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Nopcommerce" paralllel="tests" threas-count="3">
+
+  <listeners>
+  	<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+  	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+	<listener class-name="reportConfig.ReportNGListener"/>
+  	<listener class-name="common.MethodListener"/>
+  </listeners>
+  
+  <parameter name="url" value="https://www.saucedemo.com/"/>
+  
+  <test name="Run on Firefox">
+  	<parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.swalabs.sort.Level_19_Sort_ASC_DESC"/>
+    </classes>
+  </test> 
+  
+</suite> 
