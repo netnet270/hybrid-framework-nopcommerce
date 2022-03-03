@@ -45,22 +45,27 @@ public class UserRegisterPageObject extends BasePage{
 	}
 
 	public void inputToFirstNameTextbox(String firstName) {
+		waitForElementVisible(driver, RegisterPageUI.FIRST_NAME_TEXTBOX);
 		senkeyToElement(driver, RegisterPageUI.FIRST_NAME_TEXTBOX, firstName);
 	}
 
 	public void inputToLastNameTextbox(String lastName) {
+		waitForElementVisible(driver, RegisterPageUI.LAST_NAME_TEXTBOX);
 		senkeyToElement(driver, RegisterPageUI.LAST_NAME_TEXTBOX, lastName);		
 	}
 
 	public void inputToEmailTextbox(String email) {
+		waitForElementVisible(driver, RegisterPageUI.EMAIL_TEXTBOX);
 		senkeyToElement(driver, RegisterPageUI.EMAIL_TEXTBOX, email);		
 	}
 
 	public void inputToPasswordTextbox(String password) {
+		waitForElementVisible(driver, RegisterPageUI.PASSWORD_TEXTBOX);
 		senkeyToElement(driver, RegisterPageUI.PASSWORD_TEXTBOX, password);		
 	}
 
 	public void inputToConfirmPasswordTextbox(String confirmPassword) {
+		waitForElementVisible(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX);
 		senkeyToElement(driver, RegisterPageUI.CONFIRM_PASSWORD_TEXTBOX, confirmPassword);		
 	}
 
@@ -84,4 +89,5 @@ public class UserRegisterPageObject extends BasePage{
 		waitForElementVisible(driver, RegisterPageUI.EXIST_EMAIL_ERROR_MESSAGE);
 		return getTextElement(driver, RegisterPageUI.EXIST_EMAIL_ERROR_MESSAGE);
 	}
+
 }

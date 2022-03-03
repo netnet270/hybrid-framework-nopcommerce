@@ -41,4 +41,5 @@ public class UserHomePageObject extends BasePage{
 		clickToElement(driver, HomePageUI.LOGOUT_LINK);
 		return PageGeneratorManager.getUserHomePageObject(driver);
 	}
+
 }
