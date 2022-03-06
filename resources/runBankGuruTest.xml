@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Nopcommerce">
+
+  <listeners>
+  	<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+  	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  	<listener class-name="reportConfig.ReportNGListener"/>
+  	<listener class-name="common.MethodListener"/>
+  </listeners>
+  
+  <parameter name="url" value="dev"/>
+  
+  <test name="Run on CHROME">
+  	<parameter name="browser" value="Chrome"/>
+    <classes>
+      <class name="com.bankguru.Level_20_Multiple_Enviroment"/>
+    </classes>
+  </test> 
+  
+</suite>

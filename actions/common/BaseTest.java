@@ -33,7 +33,11 @@ public class BaseTest {
   }
   
   public enum BrowserList {
-    CHORME, FIREFOX, IE, EDGE, SAFARI, OPERA, H_CHORME, H_FIREFOX;
+    CHROME, FIREFOX, IE, EDGE, SAFARI, OPERA, H_CHROME, H_FIREFOX;
+  }
+  
+  public enum EnviromentList {
+	  DEV, TESTING, STAGING;
   }
   
   protected WebDriver getBrowserName(String browserName) {
@@ -56,7 +60,7 @@ public class BaseTest {
       options.setHeadless(true);
       
       driver = new FirefoxDriver(options);
-    } else if (browser == BrowserList.CHORME) {
+    } else if (browser == BrowserList.CHROME) {
       WebDriverManager.chromedriver().setup();
       
       File extensionFile = new File(GlobalConstants.PROJECT_PATH + "\\browserExtensions\\translate_2_0_11_0.crx");
@@ -64,7 +68,7 @@ public class BaseTest {
       options.addExtensions(extensionFile);
       
       driver = new ChromeDriver(options);
-    } else if (browser == BrowserList.H_CHORME) {
+    } else if (browser == BrowserList.H_CHROME) {
       WebDriverManager.chromedriver().setup();
       ChromeOptions options = new ChromeOptions();
       options.addArguments("--headless");
@@ -100,10 +104,10 @@ public class BaseTest {
       options.setHeadless(true);
       
       driver = new FirefoxDriver(options);
-    } else if (browser == BrowserList.CHORME) {
+    } else if (browser == BrowserList.CHROME) {
       WebDriverManager.chromedriver().setup();
       driver = new ChromeDriver();
-    } else if (browser == BrowserList.H_CHORME) {
+    } else if (browser == BrowserList.H_CHROME) {
       WebDriverManager.chromedriver().setup();
       ChromeOptions options = new ChromeOptions();
       options.addArguments("--headless");
@@ -124,6 +128,20 @@ public class BaseTest {
     driver.manage().window().maximize();
     driver.get(url);
     return driver;
+  }
+  
+  protected String getEnviroment(String envName) {
+	String url = null;
+	EnviromentList enviroment = EnviromentList.valueOf(envName.toUpperCase());
+	
+	if(enviroment == EnviromentList.DEV) {
+		url = "https://www.demo.guru99.com/v1";
+	} else if (enviroment == EnviromentList.TESTING) {
+		url = "https://www.demo.guru99.com/v2";
+	}  else if (enviroment == EnviromentList.STAGING) {
+	  url = "https://www.demo.guru99.com/v3";
+	} 
+	return url;
   }
   
   protected int getRandomNumber() {
