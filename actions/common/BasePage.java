@@ -22,8 +22,12 @@ import pageObjects.nopCommerce.user.UserAddressPageObject;
 import pageObjects.nopCommerce.user.UserCustomerInfoPageObject;
 import pageObjects.nopCommerce.user.UserMyProductReviewerPageObject;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
+import pageObjects.orangeHRM.DashboardPageObject;
+import pageObjects.orangeHRM.LoginPageObject;
+import pageObjects.orangeHRM.PageGenerator;
 import pageUIs.jQuery.uploadFile.BasePageUploadFileUI;
 import pageUIs.nopCommerce.user.BasePageUI;
+import pageUIs.orangeHRM.BasePageOrangeUI;
 
 public class BasePage {
 	public static BasePage getBasePageObject() {
@@ -151,6 +155,10 @@ public class BasePage {
 	protected WebElement getWebElement(WebDriver driver, String locatorType) {
 		return driver.findElement(getByLocator(locatorType));
 	}
+	
+	protected WebElement getWebElement(WebDriver driver, String locatorType, String...dynamicValues) {
+		return driver.findElement(getByLocator(getDynamicLocatorType(locatorType, dynamicValues)));
+	}
 
 	protected List<WebElement> getListWebElement(WebDriver driver, String locatorType) {
 		return driver.findElements(getByLocator(locatorType));
@@ -229,6 +237,10 @@ public class BasePage {
 	protected String getAttributeValue(WebDriver driver, String locatorType, String attributeName) {
 		return getWebElement(driver, locatorType).getAttribute(attributeName);
 	}
+	
+	protected String getAttributeValue(WebDriver driver, String locatorType, String attributeName, String...dynamicValues) {
+		return getWebElement(driver, getDynamicLocatorType(locatorType, dynamicValues)).getAttribute(attributeName);
+	}
 
 	protected String getTextElement(WebDriver driver, String locatorType) {
 		return getWebElement(driver, locatorType).getText();
@@ -266,13 +278,13 @@ public class BasePage {
 			item.click();
 	}
 
-	protected void uncheckTheCheckboxOrRadio(WebDriver driver, String locatorType) {
+	protected void uncheckTheCheckbox(WebDriver driver, String locatorType) {
 		WebElement item = getWebElement(driver, locatorType);
 		if (item.isSelected())
 			item.click();
 	}
 	
-	protected void uncheckTheCheckboxOrRadio(WebDriver driver, String locatorType, String...dynamicValues) {
+	protected void uncheckTheCheckbox(WebDriver driver, String locatorType, String...dynamicValues) {
 		WebElement item = getWebElement(driver, getDynamicLocatorType(locatorType, dynamicValues));
 		if (item.isSelected())
 			item.click();
@@ -309,6 +321,10 @@ public class BasePage {
 	protected boolean isElementSelected(WebDriver driver, String locatorType) {
 		return getWebElement(driver, locatorType).isSelected();
 	}
+	
+	protected boolean isElementSelected(WebDriver driver, String locatorType, String...dynamicValues) {
+		return getWebElement(driver, getDynamicLocatorType(locatorType, dynamicValues)).isSelected();
+	}
 
 	protected boolean isElementEnabled(WebDriver driver, String locatorType) {
 		return getWebElement(driver, locatorType).isEnabled();
@@ -325,6 +341,11 @@ public class BasePage {
 	protected void hoverMouseToElement(WebDriver driver, String locatorType) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(getWebElement(driver, locatorType)).perform();
+	}
+	
+	protected void hoverMouseToElement(WebDriver driver, String locatorType, String...dynamicValues) {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(getWebElement(driver, getDynamicLocatorType(locatorType, dynamicValues))).perform();
 	}
 
 	protected void scrollToBottomPage(WebDriver driver) {
@@ -375,6 +396,18 @@ public class BasePage {
 			}
 		};
 		return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
+	}
+	
+	public boolean isPageLoadedSuccess(WebDriver driver) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTime);
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		ExpectedCondition<Boolean> jsQueryLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				return (Boolean) jsExecutor.executeScript("return (window.jQuery != null) && (jQuery.active === 0)");
+			}
+		};
+		return explicitWait.until(jsQueryLoad);
 	}
 
 	protected String getElementValidationMessage(WebDriver driver, String locatorType) {
@@ -503,6 +536,7 @@ public class BasePage {
 		}
 	}
 	
+	// Nopcommerce
 	public void enterToTextboxByID(WebDriver driver,  String textboxID, String value) {
 		waitForElementVisible(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
 		senkeyToElement(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_ID, value, textboxID);		
@@ -518,5 +552,101 @@ public class BasePage {
 		clickToElement(driver, BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
 	}
 	
+	// OrangeHRM
+	public void openMenuPage(WebDriver driver, String menuPageName) {
+		waitForElementClickable(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, menuPageName);
+		clickToElement(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, menuPageName);
+		isPageLoadedSuccess(driver);
+	}
+	
+	public void openSubMenuPage(WebDriver driver, String menuPageName, String subMenuPageName) {
+		waitForElementClickable(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, menuPageName);
+		clickToElement(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, menuPageName);
+		
+		waitForElementClickable(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, subMenuPageName);
+		clickToElement(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, subMenuPageName);
+		isPageLoadedSuccess(driver);
+	}
+	
+	public void openChildSubMenuPage(WebDriver driver, String menuPageName, String subMenuPageName, String childSubMenuPageName) {
+		waitForElementClickable(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, menuPageName);
+		clickToElement(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, menuPageName);
+		
+		waitForElementVisible(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, subMenuPageName);
+		hoverMouseToElement(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, subMenuPageName);
+		
+		waitForElementClickable(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, childSubMenuPageName);
+		clickToElement(driver, BasePageOrangeUI.DYNAMIC_MENU_PAGE_BY_NAME, childSubMenuPageName);
+		isPageLoadedSuccess(driver);
+	}
+
+	public void openSideMenuByName(WebDriver driver, String sideMenuPageName) {
+		waitForElementClickable(driver, BasePageOrangeUI.DYNAMIC_SIDE_MENU_PAGE_BY_NAME, sideMenuPageName);
+		clickToElement(driver, BasePageOrangeUI.DYNAMIC_SIDE_MENU_PAGE_BY_NAME, sideMenuPageName);
+		isPageLoadedSuccess(driver);
+	}
+	
+	public void enterToTextboxById(WebDriver driver, String textboxID, String value) {
+		waitForElementVisible(driver, BasePageOrangeUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+		senkeyToElement(driver, BasePageOrangeUI.DYNAMIC_TEXTBOX_BY_ID, value, textboxID);	
+	}
+	
+	public String getTextboxValue(WebDriver driver, String textboxID) {
+		return getAttributeValue(driver, BasePageOrangeUI.DYNAMIC_TEXTBOX_BY_ID, "value", textboxID);
+	}
+	
+	public void clickToButtonById(WebDriver driver, String buttonID) {
+		waitForElementClickable(driver, BasePageOrangeUI.DYNAMIC_BUTTON_BY_ID, buttonID);
+		clickToElement(driver, BasePageOrangeUI.DYNAMIC_BUTTON_BY_ID, buttonID);
+	}
+
+	public void clickToCheckboxByLabel(WebDriver driver, String checkboxLabel) {
+		waitForElementClickable(driver, BasePageOrangeUI.DYNAMIC_CHECKBOX_BY_LABEL, checkboxLabel);
+		checkTheCheckboxOrRadio(driver, BasePageOrangeUI.DYNAMIC_CHECKBOX_BY_LABEL, checkboxLabel);
+	}
+	
+	public void clickToRadioByLabel(WebDriver driver, String radioLabel) {
+		waitForElementClickable(driver, BasePageOrangeUI.DYNAMIC_RADIO_BY_LABEL, radioLabel);
+		checkTheCheckboxOrRadio(driver, BasePageOrangeUI.DYNAMIC_RADIO_BY_LABEL, radioLabel);
+	}
+	
+	public boolean isRadioButtonSelectedByLabel(WebDriver driver, String radioLabel) {
+		waitForElementVisible(driver, BasePageOrangeUI.DYNAMIC_RADIO_BY_LABEL, radioLabel);
+		return isElementSelected(driver, BasePageOrangeUI.DYNAMIC_RADIO_BY_LABEL, radioLabel);
+	}
+
+	public void selectItemInDropdownById(WebDriver driver, String dropdownID, String textItem) {
+		waitForElementClickable(driver, BasePageOrangeUI.DYNAMIC_DROPDOWN_BY_ID, dropdownID);
+		selectItemInDropdown(driver, BasePageOrangeUI.DYNAMIC_DROPDOWN_BY_ID, textItem, dropdownID);
+	}
+	
+	public boolean isItemSelectedInDropdown(WebDriver driver, String textItem) {
+		waitForElementVisible(driver, BasePageOrangeUI.DYNAMIC_DROPDOWN_BY_ID, textItem);
+		return isElementSelected(driver, BasePageOrangeUI.DYNAMIC_DROPDOWN_BY_ID, textItem);
+	}
+	
+	public String getValueAtTableIdByColumnNameAndRowIndex(WebDriver driver, String tableID, String columnName, String rowIndex) {
+		int columnIndex = getElementsSize(driver, BasePageOrangeUI.COLUMN_INDEX_AT_TABLE_ID_BY_NAME, tableID, columnName) + 1;
+		
+		waitForElementVisible(driver, BasePageOrangeUI.ITEM_AT_TABLE_ID_BY_ROW_INDEX_COLUMN_NAME, tableID, rowIndex, String.valueOf(columnIndex));
+		return getTextElement(driver, BasePageOrangeUI.ITEM_AT_TABLE_ID_BY_ROW_INDEX_COLUMN_NAME, tableID, rowIndex, String.valueOf(columnIndex));
+	}
+
+	public DashboardPageObject loginToSytem(WebDriver driver, String userName, String password) {
+		waitForElementVisible(driver, BasePageOrangeUI.USERNAME_LOGIN_TEXTBOX, userName);
+		senkeyToElement(driver, BasePageOrangeUI.USERNAME_LOGIN_TEXTBOX, userName);
+		senkeyToElement(driver, BasePageOrangeUI.PASSWORD_LOGIN_TEXTBOX, password);
+		clickToElement(driver, BasePageOrangeUI.LOGIN_BUTTON);
+		return PageGenerator.getDashboardPageObject(driver);
+	}
+	
+	public LoginPageObject logoutToSytem(WebDriver driver) {
+		waitForElementVisible(driver, BasePageOrangeUI.WELCOME_LINK);
+		clickToElement(driver, BasePageOrangeUI.WELCOME_LINK);
+		waitForElementVisible(driver, BasePageOrangeUI.LOGOUT_LINK);
+		clickToElement(driver, BasePageOrangeUI.LOGOUT_LINK);
+		return PageGenerator.getLoginPageObject(driver);
+	}
+
 	private long longTime = GlobalConstants.LONG_TIME;
 }
