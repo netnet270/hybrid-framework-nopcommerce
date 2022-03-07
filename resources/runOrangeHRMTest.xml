@@ -14,7 +14,7 @@
   <test name="Run on Firefox">
   	<parameter name="browser" value="firefox"/>
     <classes>
-      <class name="com.orangehrm.Level_18_Live_Coding"/>
+      <class name="com.orangehrm.Level_21_Database_UI"/>
     </classes>
   </test> 
   
