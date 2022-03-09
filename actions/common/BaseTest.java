@@ -184,6 +184,28 @@ public class BaseTest {
 		return driver;
 	}
 
+	protected WebDriver getBrowserDriverBrowserstack(String url, String osName, String osVersion, String browserName, String browserVersion) {
+		DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setCapability("os", osName);
+		caps.setCapability("os_version", osVersion);
+		caps.setCapability("browser", browserName);
+		caps.setCapability("browser_version", browserVersion);
+		caps.setCapability("browserstack.local", "false");
+		caps.setCapability("browserstack.debug", "true");
+		caps.setCapability("browserstack.selenium_version", "3.141.59");
+		caps.setCapability("name", "Run on " + osName + " and " + browserName + " with version " + browserVersion);
+
+		try {
+			driver = new RemoteWebDriver(new URL(GlobalConstants.BROWSER_STACK_URL), caps);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		driver.manage().timeouts().implicitlyWait(GlobalConstants.LONG_TIME, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		driver.get(url);
+		return driver;
+	}
+
 	protected String getEnviroment(String envName) {
 		String url = null;
 		EnviromentList enviroment = EnviromentList.valueOf(envName.toUpperCase());

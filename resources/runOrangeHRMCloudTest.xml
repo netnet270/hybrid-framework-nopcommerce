@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="OrangeHRM">
+
+  <listeners>
+  	<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+  	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+ 	<listener class-name="reportConfig.ReportNGListener"/>
+  	<listener class-name="common.MethodListener"/>
+  </listeners>
+  
+  <parameter name="url" value="https://opensource-demo.orangehrmlive.com/"/>
+  
+  <test name="Run on CHROME">
+  	<parameter name="browserName" value="Chrome"/>
+  	<parameter name="browserVersion" value="96.0"/>
+  	<parameter name="osName" value="Windows"/>
+  	<parameter name="osVersion" value="10"/>
+    <classes>
+      <class name="com.orangehrm.Level_22_Cloud_Testing_Browserstack"/>
+    </classes>
+  </test> 
+  
+  <test name="Run on FIREFOX">
+  	<parameter name="browserName" value="Chrome"/>
+ 	<parameter name="browserVersion" value="96.0"/>
+  	<parameter name="osName" value="OS X"/>
+  	<parameter name="osVersion" value="Big Sur"/>
+    <classes>
+      <class name="com.orangehrm.Level_22_Cloud_Testing_Browserstack"/>
+    </classes>
+  </test> 
+  
+</suite>
